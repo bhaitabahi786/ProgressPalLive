@@ -1,0 +1,71 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">ADD TASK</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p>add-task works!</p>
+      {{ task.userID }}
+
+      <!-- Main form start here -->
+
+      <form class="row gy-2 gx-3 align-items-center" #form="ngForm">
+        <div class="col-auto">
+          <label class="form-label" for="taskDateInput">Date</label>
+          <input type="date" class="form-control" id="taskDateInput" name="date" [(ngModel)]="task.date" required />
+        </div>
+        <div class="col-auto">
+          <label class="form-label" for="taskNameInput">Task Name</label>
+          <input type="text" class="form-control" id="taskNameInput" placeholder="eg: 2 km walk" name="name"
+            [(ngModel)]="task.name" required />
+        </div>
+        <div class="col-auto">
+          <label class="form-label" for="taskDesInput">Task Description</label>
+          <textarea class="form-control" id="taskDesInput" placeholder="eg: 2 km walk area name" name="description"
+            [(ngModel)]="task.description"></textarea>
+        </div>
+        <div class="col-auto">
+          <label for="inputState" class="form-label">Priority</label>
+          <select id="inputState" class="form-select" required name="priority" [(ngModel)]="task.priority">
+            <option selected>low</option>
+            <option>medium</option>
+            <option>high</option>
+          </select>
+        </div>
+
+        <div class="col-auto">
+          <label for="taskGroup" class="form-label">Task Group</label>
+          <select id="taskGroup" name="group" class="form-control" [(ngModel)]="task.group" required
+            (change)="otherSelected($event)">
+            <option value="learning">Learning</option>
+            <option value="gym">Gym</option>
+            <option value="office work">Office Work</option>
+            <option value="home work">Home Work</option>
+            <option value="friends meet">Friends Meet</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+
+        @if (isOtherGroup) {
+        <div class="col-auto">
+          <label for="otherGroup" class="form-label">Other Group</label>
+          <input type="text" id="otherGroup" name="otherGroup" class="form-control" [(ngModel)]="task.otherGroup"
+            required />
+        </div>
+        }
+      </form>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <button type="button" class="btn btn-success" data-bs-dismiss="modal" [disabled]="form.invalid"
+        (click)="addTask()">
+        Add Task
+      </button>
+    </div>
+  </div>
+</div>

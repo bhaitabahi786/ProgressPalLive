@@ -1,0 +1,134 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="filterDate"
+        (change)="filterTasks()"
+      />
+    </div>
+  </div>
+
+  <div *ngIf="filterDate; else groupedTasksDisplay">
+    <div class="accordion" id="taskAccordion">
+      <div class="accordion-item" *ngFor="let task of filteredTasks">
+        <h2 class="accordion-header" id="heading{{task.id}}">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapse' + task.id"
+            aria-expanded="true"
+            [attr.aria-controls]="'collapse' + task.id"
+          >
+            <input
+              type="checkbox"
+              [(ngModel)]="task.completed"
+              (change)="toggleComplete(task)"
+              class="me-2"
+            />
+            {{ task.name }}
+            <div class="ms-auto">
+              <button class="btn btn-primary btn-sm me-2" (click)="editTask(task)">
+                Edit
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">
+                Delete
+              </button>
+            </div>
+          </button>
+        </h2>
+        <div
+          [id]="'collapse' + task.id"
+          class="accordion-collapse collapse"
+          [attr.aria-labelledby]="'heading' + task.id"
+          data-bs-parent="#taskAccordion"
+        >
+          <div class="accordion-body">
+            <p>{{ task.description }}</p>
+            <span class="badge" [ngClass]="getPriorityClass(task.priority)">
+              {{ task.priority }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #groupedTasksDisplay>
+    <div *ngFor="let date of groupedTaskKeys">
+      <div class="row mb-3">
+        <div class="col-md-8 d-flex align-items-center">
+          <h5 class="mb-0">{{ date }}</h5>
+        </div>
+        <div class="col-md-4 d-flex align-items-center">
+          <div class="progress w-100">
+            <div
+              class="progress-bar"
+              [style.width]="getProgress(groupedTasks[date])"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="taskAccordion{{date}}">
+        <div class="accordion-item" *ngFor="let task of groupedTasks[date]">
+          <h2 class="accordion-header" id="heading{{task.id}}">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse' + task.id"
+              aria-expanded="true"
+              [attr.aria-controls]="'collapse' + task.id"
+            >
+              <input
+                type="checkbox"
+                [(ngModel)]="task.completed"
+                (change)="toggleComplete(task)"
+                class="me-2"
+              />
+              {{ task.name }}
+              <div class="ms-auto">
+                <button class="btn btn-primary btn-sm me-2" (click)="editTask(task)">
+                  Edit
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">
+                  Delete
+                </button>
+              </div>
+            </button>
+          </h2>
+          <div
+            [id]="'collapse' + task.id"
+            class="accordion-collapse collapse"
+            [attr.aria-labelledby]="'heading' + task.id"
+            [attr.data-bs-parent]="'#taskAccordion' + date"
+          >
+            <div class="accordion-body">
+              <p>{{ task.description }}</p>
+              <span class="badge" [ngClass]="getPriorityClass(task.priority)">
+                {{ task.priority }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<p class="d-inline-flex gap-1">
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-bs-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>

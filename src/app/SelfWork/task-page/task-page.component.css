@@ -1,0 +1,12 @@
+
+.card {
+    overflow: hidden; /* Ensure content stays within the card */
+  }
+  
+  .card-header, .card-body {
+    word-wrap: break-word; /* Handle long words by wrapping them */
+    overflow-wrap: break-word; /* Handle long words by breaking them */
+    white-space: normal; /* Prevent text from extending outside the card */
+  }
+  
+

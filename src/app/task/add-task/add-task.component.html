@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h2>Add Task</h2>
+  <form (ngSubmit)="addTask()">
+    <div class="mb-3">
+      <label for="taskDate" class="form-label">Date</label>
+      <input type="date" id="taskDate" [(ngModel)]="task.date" name="date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="taskName" class="form-label">Task Name</label>
+      <input type="text" id="taskName" [(ngModel)]="task.name" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="taskDescription" class="form-label">Task Description</label>
+      <textarea id="taskDescription" [(ngModel)]="task.description" name="description" class="form-control" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="taskPriority" class="form-label">Priority</label>
+      <select id="taskPriority" [(ngModel)]="task.priority" name="priority" class="form-control" required>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="taskGroup" class="form-label">Task Group</label>
+      <select id="taskGroup" [(ngModel)]="task.group" name="group" class="form-control" (change)="checkOtherGroup($event)" required>
+        <option value="learning">Learning</option>
+        <option value="gym">Gym</option>
+        <option value="office work">Office Work</option>
+        <option value="home work">Home Work</option>
+        <option value="friends meet">Friends Meet</option>
+        <option value="others">Others</option>
+      </select>
+    </div>
+    <div *ngIf="isOtherGroup" class="mb-3">
+      <label for="otherGroup" class="form-label">Other Group</label>
+      <input type="text" id="otherGroup" [(ngModel)]="task.otherGroup" name="otherGroup" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Task</button>
+  </form>
+</div>
