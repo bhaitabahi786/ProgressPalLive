@@ -67,13 +67,13 @@ export class AddTaskComponent {
     this.isOtherGroup = false;
 
     if(this.supabaseService.isTaskAdded){
-      console.log("task added sssss");
+      // console.log("task added sssss");
       this.istaskAddClick.emit(true)
     }
 
     }
     catch(error) {
-      console.error('Error adding task:', error);
+      // console.error('Error adding task:', error);
     }
   }
 

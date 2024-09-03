@@ -52,7 +52,7 @@ export class TaskPageComponent implements OnInit {
       // console.log("dateKeys : ",this.dateKeys)
       
     } catch (error) {
-      console.log('error : ', error);
+      // console.log('error : ', error);
      
     }
   }
@@ -87,7 +87,7 @@ export class TaskPageComponent implements OnInit {
         const data = await this.supabaseService.completedOrNotS(compTask);
         // console.log("susccess", data);
       } catch (error) {
-        console.log('error : ', error);
+        // console.log('error : ', error);
       }
       // console.log("compTask false",compTask);
     } else {
@@ -96,7 +96,7 @@ export class TaskPageComponent implements OnInit {
         const data = await this.supabaseService.completedOrNotS(compTask);
         // console.log("susccess", data);
       } catch (error) {
-        console.log('error : ', error);
+        // console.log('error : ', error);
       }
       // console.log("compTask true",compTask);
     }

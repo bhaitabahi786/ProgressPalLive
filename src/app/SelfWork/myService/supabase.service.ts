@@ -11,7 +11,7 @@ export class SupabaseService {
   
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
-    console.log("connection : ",this.supabase);
+    // console.log("connection : ",this.supabase);
     
   }
 
@@ -32,11 +32,11 @@ export class SupabaseService {
       
       // console.log("this.IDValue : ",this.IDValue);
       const { data } = await this.supabase.from('tasks').select().eq('user_id',this.IDValue)
-      console.log("success : ",data)
+      // console.log("success : ",data)
       return data
     }
     catch(error){
-      console.log("error : ",error)
+      // console.log("error : ",error)
       return error
     }
   
@@ -50,7 +50,7 @@ export class SupabaseService {
         const { data } = await this.supabase.from('tasks').update({ completed: compTask.completed }).eq('id', compTask.id);
         // console.log("susccess", data);
       }catch(error) {
-        console.log("error : ",error);
+        // console.log("error : ",error);
       }
   }
 
@@ -60,12 +60,12 @@ export class SupabaseService {
     // console.log("add task list : ",this.task);
     try{
     const data = await this.supabase.from('tasks').insert([newTask]).select();
-    console.log('Task added successfully: ', data);
+    // console.log('Task added successfully: ', data);
     this.succesRet(data);
 
     }
     catch(error) {
-      console.error('Error adding task:', error);
+      // console.error('Error adding task:', error);
     }
   }
 
@@ -86,11 +86,11 @@ export class SupabaseService {
 
       const data = await this.supabase.from('tasks').update([upData]).eq('id', upData.id);
 
-      console.log('Error updating task:', data);
+      // console.log('Error updating task:', data);
 
     }
     catch(error){
-      console.error('Error updating task:', error);
+      // console.error('Error updating task:', error);
     }
 
   }
@@ -99,7 +99,7 @@ export class SupabaseService {
 
   async deleteTaskS(delData: any){
     const response = await this.supabase.from('tasks').delete().eq('id', delData.id);
-    console.log("task del: ",response);
+    // console.log("task del: ",response);
     this.succesRet(response);
 
   }
@@ -122,8 +122,8 @@ export class SupabaseService {
       }
     )
     
-    console.log("signup : ",data);
-    console.log("signup error: ",error);
+    // console.log("signup : ",data);
+    // console.log("signup error: ",error);
 
     if(error){
       this.signUperror = error.message;
@@ -142,8 +142,8 @@ export class SupabaseService {
       password: loginData.pswd,
     })
 
-    console.log("loginS : ",data);
-    console.log("loginS error: ",error);
+    // console.log("loginS : ",data);
+    // console.log("loginS error: ",error);
 
     if(error){
       this.loginError = error.message;
@@ -173,7 +173,7 @@ export class SupabaseService {
 
   async logoutS(){
     const { error } = await this.supabase.auth.signOut();
-    console.log("logout errro : ",error);
+    // console.log("logout errro : ",error);
     
   }
 

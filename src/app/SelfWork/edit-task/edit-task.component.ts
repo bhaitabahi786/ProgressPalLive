@@ -19,7 +19,7 @@ export class EditTaskComponent {
   constructor(private supabaseService: SupabaseService) { }
 
   otherSelected(event: any) {
-    console.log("ebvent : ", event.target.value);
+    // console.log("ebvent : ", event.target.value);
 
     if (event.target.value === "others") {
       this.isOtherGroup = true
@@ -38,10 +38,10 @@ export class EditTaskComponent {
     try {
 
       const data = await this.supabaseService.updateTaskS(this.taskEditData);
-      console.log('Task updated successfully ', data);
+      // console.log('Task updated successfully ', data);
     }
     catch (error) {
-      console.error('Error updating task:', error);
+      // console.error('Error updating task:', error);
     }
 
   }

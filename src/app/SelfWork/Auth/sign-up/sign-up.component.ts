@@ -37,7 +37,7 @@ export class SignUpComponent {
     const data = await this.supabaseService.signUpS(this.signUpData);
 
     if(this.supabaseService.signUperror){
-      console.log(this.supabaseService.signUperror);
+      // console.log(this.supabaseService.signUperror);
       if(this.supabaseService.signUperror.includes('success')){
         this.classMessage = 'alert-success'
         this.signUpErorr = this.supabaseService.signUperror;
