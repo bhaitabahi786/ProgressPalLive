@@ -25,7 +25,7 @@
 	width:100%;
 	height: 100%;
 }
-label{
+.labelS{
 	color: #fff;
 	font-size: 2.3em;
 	justify-content: center;
@@ -35,7 +35,7 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
-input{
+.inputS{
 	width: 60%;
 	height: 10px;
 	background: #e0dede;
@@ -47,7 +47,7 @@ input{
 	outline: none;
 	border-radius: 5px;
 }
-button{
+.buttonLogin{
 	width: 60%;
 	height: 40px;
 	margin: 10px auto;
@@ -64,7 +64,7 @@ button{
 	transition: .2s ease-in;
 	cursor: pointer;
 }
-button:hover{
+.buttonLogin:hover{
 	background: #6d44b8;
 }
 .login{
@@ -74,7 +74,7 @@ button:hover{
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
-.login label{
+.login .labelS{
 	color: #573b8a;
 	transform: scale(.6);
 }
@@ -82,9 +82,9 @@ button:hover{
 #chk:checked ~ .login{
 	transform: translateY(-550px);
 }
-#chk:checked ~ .login label{
+#chk:checked ~ .login .labelS{
 	transform: scale(1);	
 }
-#chk:checked ~ .signup label{
+#chk:checked ~ .signup .labelS{
 	transform: scale(.6);
 }
