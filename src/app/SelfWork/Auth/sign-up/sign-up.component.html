@@ -1,29 +1,37 @@
-
 <app-navbar [isLogged]="logCheck"></app-navbar>
 
 <div class="bodyCss">
 
-<div class="main">  	
-    <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
 
         <div class="signup">
             <form>
                 <label class="labelS" for="chk" aria-hidden="true">Sign up</label>
                 <div class="alert alert-dismissible" [ngClass]="classMessage" role="alert" *ngIf="this.signUpErorr">
                     {{ this.signUpErorr }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="alertClose()" ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        (click)="alertClose()"></button>
                 </div>
-                <input class="inputS" type="text" name="userName" placeholder="User name" [(ngModel)]="signUpData.userName" required>
-                <input class="inputS" type="email" name="email" placeholder="Email" [(ngModel)]="signUpData.email" required >
-      
-                <input class="inputS" type="password" name="pswd" placeholder="Password" [(ngModel)]="signUpData.pswd" (input)="checkPasswordStrength()" required>
-                <small [ngClass]="passwordStrengthClass">{{ passwordStrengthMessage }}</small>
-                <small> <input type="checkbox" name="minMixL" id="minMixL" [checked]="this.minMixL" > <label for="minMixL">Minimum 8 chars lenght</label> </small>
-                <small> <input type="checkbox" name="Salphabet" id="Salphabet" [checked]="this.Salphabet" > <label for="Salphabet">UpperCase, Lowercase letters</label> </small>
-                <small> <input type="checkbox" name="numbers" id="numbers" [checked]="this.numbers" > <label for="numbers">1-9 Numbers</label> </small>
-                <small> <input type="checkbox" name="SpecialChars" id="SpecialChars" [checked]="this.SpecialChars"> <label for="SpecialChars">Special characters</label> </small>
-                
-                <button class="buttonLogin" (click)="signUp()" [disabled]="this.passAllCheck" >Sign up</button>
+                <input class="inputS" type="text" name="userName" placeholder="User name"
+                    [(ngModel)]="signUpData.userName" required>
+                <input class="inputS" type="email" name="email" placeholder="Email" [(ngModel)]="signUpData.email"
+                    required>
+
+                <input class="inputS" type="password" name="pswd" placeholder="Password" [(ngModel)]="signUpData.pswd"
+                    (input)="checkPasswordStrength()" required>
+                <div class="pwdCheck">
+                    <small [ngClass]="passwordClassM"> <input type="checkbox" name="minMixL" id="minMixL" [checked]="this.minMixL" disabled> <label
+                            for="minMixL">Minimum 8 chars lenght</label> </small> 
+                    <small [ngClass]="passwordClassUL" > <input type="checkbox" name="Salphabet" id="Salphabet" [checked]="this.Salphabet" disabled> <label
+                            for="Salphabet">UpperCase, Lowercase letters</label> </small> 
+                    <small [ngClass]="passwordClassN" > <input type="checkbox" name="numbers" id="numbers" [checked]="this.numbers" disabled> <label
+                            for="numbers">1-9 Numbers</label> </small> 
+                    <small [ngClass]="passwordClassSC" > <input type="checkbox" name="SpecialChars" id="SpecialChars" [checked]="this.SpecialChars" disabled>
+                        <label for="SpecialChars">Special characters</label> </small> 
+                </div>
+
+                <button class="buttonLogin" (click)="signUp()" [disabled]="this.passAllCheck">Sign up</button>
             </form>
         </div>
 
@@ -32,12 +40,15 @@
                 <label class="labelS" for="chk" aria-hidden="true">Login</label>
                 <div class="alert alert-danger" role="alert" *ngIf="this.signInErorr">
                     {{ this.signInErorr }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="alertCloseS()" ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        (click)="alertCloseS()"></button>
                 </div>
-                <input class="inputS" type="email" name="email" placeholder="Email" [(ngModel)]="loginData.email" required>
-                <input class="inputS" type="password" name="pswd" placeholder="Password" [(ngModel)]="loginData.pswd"  required>
-                <button class="buttonLogin" (click)="login()" >Login</button>
+                <input class="inputS" type="email" name="email" placeholder="Email" [(ngModel)]="loginData.email"
+                    required>
+                <input class="inputS" type="password" name="pswd" placeholder="Password" [(ngModel)]="loginData.pswd"
+                    required>
+                <button class="buttonLogin" (click)="login()">Login</button>
             </form>
         </div>
-</div>
+    </div>
 </div>

@@ -47,6 +47,15 @@
 	outline: none;
 	border-radius: 5px;
 }
+
+.pwdCheck {
+	justify-content: center;
+	display: grid;
+	/* padding: 5px; */
+	width: 60%;
+	margin: 20px auto;
+}
+
 .buttonLogin{
 	width: 60%;
 	height: 40px;

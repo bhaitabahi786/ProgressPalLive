@@ -34,7 +34,7 @@ export class SignUpComponent {
   constructor(
     private supabaseService: SupabaseService,
     private router: Router
-  ) {}
+  ) { }
 
   async signUp() {
     // Reset the flag to allow the alert to show again
@@ -82,14 +82,15 @@ export class SignUpComponent {
   }
 
   // pwd strenght 
-
-  passwordStrengthMessage: string = '';
-  passwordStrengthClass: string = 'text-muted';
+  passwordClassM: string = 'text-danger';
+  passwordClassUL: string = 'text-danger';
+  passwordClassN: string = 'text-danger';
+  passwordClassSC: string = 'text-danger';
   passAllCheck: boolean = true;
-  Salphabet:boolean = false;
-  SpecialChars:boolean = false;
-  numbers:boolean = false;
-  minMixL:boolean = false;
+  Salphabet: boolean = false;
+  SpecialChars: boolean = false;
+  numbers: boolean = false;
+  minMixL: boolean = false;
 
   checkPasswordStrength() {
     const password = this.signUpData.pswd;
@@ -99,34 +100,45 @@ export class SignUpComponent {
     const hasNumbers = /\d/.test(password);
     const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    if (minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars) {
-      this.passwordStrengthMessage = 'Strong password';
-      this.passwordStrengthClass = 'text-success';
-      this.passAllCheck = false;
-    } else if (minLength && (hasUpperCase || hasLowerCase) && (hasNumbers || hasSpecialChars)) {
-      this.passwordStrengthMessage = 'Medium password';
-      this.passwordStrengthClass = 'text-warning';
-    } else {
-      this.passwordStrengthMessage = 'Weak password';
-      this.passwordStrengthClass = 'text-danger';
+    if (minLength) {
+      this.minMixL = true;
+      this.passwordClassM = 'text-success';
+    }
+    else{
+      this.minMixL = false;
+      this.passwordClassM = 'text-danger';
     }
 
-    if(minLength){
-      this.minMixL = true;
-    } 
-   if(hasUpperCase && hasLowerCase){
+    if (hasUpperCase && hasLowerCase) {
       this.Salphabet = true;
-    } 
-     if(hasNumbers){
+      this.passwordClassUL = 'text-success';
+    }
+    else{
+      this.Salphabet = false;
+      this.passwordClassUL = 'text-danger';
+    }
+
+    if (hasNumbers) {
       this.numbers = true;
+      this.passwordClassN = 'text-success';
     }
-     if(hasSpecialChars){
+    else{
+      this.numbers = false;
+      this.passwordClassN = 'text-danger';
+    }
+
+    if (hasSpecialChars) {
       this.SpecialChars = true;
+      this.passwordClassSC = 'text-success';
     }
-    // else {
-    //   this.minMixL = true;
-    //   this.Salphabet = true;
-    // }
+    else{
+      this.SpecialChars = false;
+      this.passwordClassSC = 'text-danger';
+    }
+
+    if (minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars) {
+      this.passAllCheck = false;
+    }
 
   }
 
